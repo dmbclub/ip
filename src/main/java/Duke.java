@@ -1,47 +1,48 @@
 import java.util.Scanner;
 
 public class Duke {
+    static int MAX_NUM_TASK = 100;
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int count = 0; //total number of tasks in the list - 1
-        Task[] Tasks = new Task[100];
-        Greet();
+        Task[] tasks = new Task[MAX_NUM_TASK];
+        greet();
         String userInput = input.nextLine();
 
         while(!userInput.equals("bye")) {
             //Print the list if input is 'list'
             if (userInput.equals("list")) {
-                listTasks(count, Tasks);
+                listTasks(count, tasks);
                 userInput = input.nextLine();
                 continue;
             }
             //Mark the tasks as done
             else if (userInput.startsWith("done")) {
-                markAsDone(Tasks, userInput);
+                markAsDone(tasks, userInput);
                 userInput = input.nextLine();
                 continue;
             }
             else if (userInput.startsWith("deadline")) {
                 userInput = userInput.replace("deadline ", "");
                 String[] words = userInput.split(" /by ");
-                Tasks[count] = new Deadline(words[0], words[1]);
+                tasks[count] = new Deadline(words[0], words[1]);
                 count++;
             }
             else if (userInput.startsWith("event")) {
                 userInput = userInput.replace("event ", "");
                 String[] words = userInput.split(" /at ");
-                Tasks[count] = new Event(words[0], words[1]);
+                tasks[count] = new Event(words[0], words[1]);
                 count++;
             }
             //Add the task into the task array
             else {
                 userInput = userInput.replace("todo ", "");
-                Tasks[count] = new Todo(userInput);
+                tasks[count] = new Todo(userInput);
                 count++;
             }
             System.out.println("____________________________________________________________");
             System.out.println("Got it. I've added this task:");
-            System.out.println(Tasks[count-1]);
+            System.out.println(tasks[count-1]);
             if (count == 1){
                 System.out.println("Now you have " + count + " task in the list");
             }
@@ -78,7 +79,7 @@ public class Duke {
         System.out.println("____________________________________________________________");
     }
 
-    private static void Greet() {
+    private static void greet() {
         System.out.println("____________________________________________________________");
         System.out.println(" Hello! I'm Duke");
         System.out.println(" What can I do for you?");
