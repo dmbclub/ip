@@ -23,31 +23,75 @@ public class Duke {
                 continue;
             }
             else if (userInput.startsWith("deadline")) {
-                userInput = userInput.replace("deadline ", "");
-                String[] words = userInput.split(" /by ");
-                tasks[count] = new Deadline(words[0], words[1]);
+                try {
+                    userInput = userInput.split(" ")[1];
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" ☹ OOPS!!! The description of a deadline cannot be empty.");
+                    System.out.println("____________________________________________________________");
+                    userInput = input.nextLine();
+                    continue;
+                }
+                try {
+                    String[] words = userInput.split(" /by ");
+                    tasks[count] = new Deadline(words[0], words[1]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" ☹ OOPS!!! You also need to specify the time of a deadline.");
+                    System.out.println("____________________________________________________________");
+                    userInput = input.nextLine();
+                    continue;
+                }
                 count++;
             }
             else if (userInput.startsWith("event")) {
-                userInput = userInput.replace("event ", "");
-                String[] words = userInput.split(" /at ");
-                tasks[count] = new Event(words[0], words[1]);
+                try {
+                    userInput = userInput.split(" ")[1];
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" ☹ OOPS!!! The description of an event cannot be empty.");
+                    System.out.println("____________________________________________________________");
+                    userInput = input.nextLine();
+                    continue;
+                }
+                try {
+                    String[] words = userInput.split(" /at ");
+                    tasks[count] = new Event(words[0], words[1]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" ☹ OOPS!!! You also need to specify the time of an event.");
+                    System.out.println("____________________________________________________________");
+                    userInput = input.nextLine();
+                    continue;
+                }
                 count++;
             }
             //Add the task into the task array
-            else {
-                userInput = userInput.replace("todo ", "");
+            else if (userInput.startsWith("todo")) {
+                try {
+                    userInput = userInput.split(" ")[1];
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
+                    System.out.println("____________________________________________________________");
+                    userInput = input.nextLine();
+                    continue;
+                }
                 tasks[count] = new Todo(userInput);
                 count++;
             }
             System.out.println("____________________________________________________________");
-            System.out.println("Got it. I've added this task:");
-            System.out.println(tasks[count-1]);
-            if (count == 1){
-                System.out.println("Now you have " + count + " task in the list");
-            }
-            else {
-                System.out.println("Now you have " + count + " tasks in the list");
+            try {
+                System.out.println(tasks[count - 1]);
+                if (count == 1) {
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println("Now you have " + count + " task in the list");
+                } else {
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println("Now you have " + count + " tasks in the list");
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
             System.out.println("____________________________________________________________");
             userInput = input.nextLine();
