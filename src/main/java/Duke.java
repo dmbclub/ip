@@ -18,13 +18,23 @@ public class Duke {
             }
             //Mark the tasks as done
             else if (userInput.startsWith("done")) {
-                markAsDone(tasks, userInput);
+                try {
+                    markAsDone(tasks, userInput);
+                } catch (NumberFormatException e) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" ☹ OOPS!!! Please enter a number after 'done' command.");
+                    System.out.println("____________________________________________________________");
+                } catch (NullPointerException e) {
+                    System.out.println("____________________________________________________________");
+                    System.out.println(" ☹ OOPS!!! Please enter valid numbers after 'done' command.");
+                    System.out.println("____________________________________________________________");
+                }
                 userInput = input.nextLine();
                 continue;
             }
             else if (userInput.startsWith("deadline")) {
                 try {
-                    userInput = userInput.split(" ")[1];
+                    String check = userInput.split(" ")[1];
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("____________________________________________________________");
                     System.out.println(" ☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -33,7 +43,7 @@ public class Duke {
                     continue;
                 }
                 try {
-                    String[] words = userInput.split(" /by ");
+                    String[] words = userInput.replace("todo ", "").split(" /by ");
                     tasks[count] = new Deadline(words[0], words[1]);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("____________________________________________________________");
@@ -46,7 +56,7 @@ public class Duke {
             }
             else if (userInput.startsWith("event")) {
                 try {
-                    userInput = userInput.split(" ")[1];
+                    String check = userInput.split(" ")[1];
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("____________________________________________________________");
                     System.out.println(" ☹ OOPS!!! The description of an event cannot be empty.");
@@ -55,7 +65,7 @@ public class Duke {
                     continue;
                 }
                 try {
-                    String[] words = userInput.split(" /at ");
+                    String[] words = userInput.replace("todo ", "").split(" /at ");
                     tasks[count] = new Event(words[0], words[1]);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("____________________________________________________________");
@@ -69,7 +79,7 @@ public class Duke {
             //Add the task into the task array
             else if (userInput.startsWith("todo")) {
                 try {
-                    userInput = userInput.split(" ")[1];
+                    String check = userInput.split(" ")[1];
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("____________________________________________________________");
                     System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
@@ -77,7 +87,7 @@ public class Duke {
                     userInput = input.nextLine();
                     continue;
                 }
-                tasks[count] = new Todo(userInput);
+                tasks[count] = new Todo(userInput.replace("todo ", ""));
                 count++;
             }
             System.out.println("____________________________________________________________");
@@ -104,6 +114,12 @@ public class Duke {
 
     private static void markAsDone(Task[] tasks, String userInput) {
         String[] words = userInput.split(" ");
+        if (words.length == 1) {
+            System.out.println("____________________________________________________________");
+            System.out.println(" ☹ OOPS!!! You are not marking any task as done.");
+            System.out.println("____________________________________________________________");
+            return;
+        }
         System.out.println("____________________________________________________________");
         System.out.println("Nice! I've marked this task as done:");
         for (int j = 1; j < words.length; j++) {
