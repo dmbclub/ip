@@ -6,13 +6,13 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
         greet();
-        String userInput = input.nextLine();
+        String userInput;
 
-        while(!userInput.equals("bye")) {
+        do {
+            userInput = input.nextLine();
             //Print the list if input is 'list'
             if (userInput.equals("list")) {
                 listTasks(tasks.size(), tasks);
-                userInput = input.nextLine();
                 continue;
             }
             //Mark the tasks as done
@@ -28,7 +28,6 @@ public class Duke {
                     System.out.println(" ☹ OOPS!!! Please enter valid numbers after 'done' command.");
                     System.out.println("____________________________________________________________");
                 }
-                userInput = input.nextLine();
                 continue;
             }
             else if (userInput.startsWith("delete")) {
@@ -43,7 +42,6 @@ public class Duke {
                     System.out.println(" ☹ OOPS!!! Please enter valid numbers after 'delete' command.");
                     System.out.println("____________________________________________________________");
                 }
-                userInput = input.nextLine();
                 continue;
             }
             else if (userInput.startsWith("deadline")) {
@@ -53,7 +51,6 @@ public class Duke {
                     System.out.println("____________________________________________________________");
                     System.out.println(" ☹ OOPS!!! The description of a deadline cannot be empty.");
                     System.out.println("____________________________________________________________");
-                    userInput = input.nextLine();
                     continue;
                 }
                 try {
@@ -63,10 +60,9 @@ public class Duke {
                     System.out.println("____________________________________________________________");
                     System.out.println(" ☹ OOPS!!! You also need to specify the time of a deadline.");
                     System.out.println("____________________________________________________________");
-                    userInput = input.nextLine();
                     continue;
                 }
-                userInput = getAddTaskMessage(input, tasks.size(), tasks);
+                getAddTaskMessage(input, tasks.size(), tasks);
             }
             else if (userInput.startsWith("event")) {
                 try {
@@ -75,7 +71,6 @@ public class Duke {
                     System.out.println("____________________________________________________________");
                     System.out.println(" ☹ OOPS!!! The description of an event cannot be empty.");
                     System.out.println("____________________________________________________________");
-                    userInput = input.nextLine();
                     continue;
                 }
                 try {
@@ -85,10 +80,9 @@ public class Duke {
                     System.out.println("____________________________________________________________");
                     System.out.println(" ☹ OOPS!!! You also need to specify the time of an event.");
                     System.out.println("____________________________________________________________");
-                    userInput = input.nextLine();
                     continue;
                 }
-                userInput = getAddTaskMessage(input, tasks.size(), tasks);
+                getAddTaskMessage(input, tasks.size(), tasks);
             }
             //Add the task into the task array
             else if (userInput.startsWith("todo")) {
@@ -98,11 +92,10 @@ public class Duke {
                     System.out.println("____________________________________________________________");
                     System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
                     System.out.println("____________________________________________________________");
-                    userInput = input.nextLine();
                     continue;
                 }
                 tasks.add(tasks.size(), new Todo(userInput.replace("todo ", "")));
-                userInput = getAddTaskMessage(input, tasks.size(), tasks);
+                getAddTaskMessage(input, tasks.size(), tasks);
             }
             else {
                 System.out.println("____________________________________________________________");
@@ -110,13 +103,13 @@ public class Duke {
                 System.out.println("____________________________________________________________");
                 userInput = input.nextLine();
             }
-        }
+        } while(!userInput.equals("bye"));
         System.out.println("____________________________________________________________");
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println("____________________________________________________________");
     }
 
-    private static String getAddTaskMessage(Scanner input, int count, ArrayList<Task> tasks) {
+    private static void getAddTaskMessage(Scanner input, int count, ArrayList<Task> tasks) {
         String userInput;
         System.out.println("____________________________________________________________");
         System.out.println(tasks.get(count - 1));
@@ -128,8 +121,6 @@ public class Duke {
             System.out.println("Now you have " + count + " tasks in the list");
         }
         System.out.println("____________________________________________________________");
-        userInput = input.nextLine();
-        return userInput;
     }
 
     private static void markAsDone(ArrayList<Task> tasks, String userInput) {
@@ -175,11 +166,11 @@ public class Duke {
                 System.out.println("____________________________________________________________");
                 break;
             case 2:
-                System.out.println("____________________________________________________________");
-                System.out.println("Noted. I've removed this task:");
                 int index = Integer.parseInt(words[1]) - 1;
                 System.out.println(tasks.get(index));
                 tasks.remove(index);
+                System.out.println("____________________________________________________________");
+                System.out.println("Noted. I've removed this task:");
                 System.out.println(("Now you have " + count + " tasks in the list").replace("1 tasks", "1 task"));
                 System.out.println("____________________________________________________________");
                 break;
