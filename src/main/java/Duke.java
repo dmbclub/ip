@@ -7,7 +7,8 @@ import java.io.File;
 public class Duke {
     public static void main(String[] args) {
         String FILEPATH = "data/duke.txt";
-        File f = new File(FILEPATH);
+        File f = new File("data");
+        f.mkdir();
         Scanner input = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
         greet();
