@@ -1,8 +1,13 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
 
 public class Duke {
     public static void main(String[] args) {
+        String FILEPATH = "data/duke.txt";
+        File f = new File(FILEPATH);
         Scanner input = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
         greet();
@@ -101,7 +106,11 @@ public class Duke {
                 System.out.println("____________________________________________________________");
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 System.out.println("____________________________________________________________");
-                userInput = input.nextLine();
+            }
+            try {
+                writeToFile(FILEPATH,tasks);
+            } catch (IOException e) {
+                System.out.println("Something went wrong: " + e.getMessage());
             }
         } while(!userInput.equals("bye"));
         System.out.println("____________________________________________________________");
@@ -180,5 +189,17 @@ public class Duke {
                 System.out.println("____________________________________________________________");
                 break;
         }
+    }
+
+    private static void writeToFile(String filePath, ArrayList<Task> textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        for (Task t : textToAdd) {
+            fw.write(formatOutput(String.valueOf(t)) + System.lineSeparator());
+        }
+        fw.close();
+    }
+
+    private static String formatOutput(String str) {
+        return str.replace("][", " | ").replace("]", " | ").replace("[", " ").replace("\u2713", "1").replace("\u2718","0");
     }
 }
