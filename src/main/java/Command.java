@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Command {
     private static String command;
@@ -43,7 +46,12 @@ public class Command {
                 }
                 try {
                     String[] words = description.split(" /by ");
-                    TaskList.add(TaskList.size(), new Deadline(words[0], words[1]));
+                    try {
+                        TaskList.add(TaskList.size(), new Deadline(words[0], LocalDate.parse(words[1])));
+                    } catch (DateTimeException e) {
+                        Ui.showDateTimeError();
+                        return;
+                    }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     Ui.showDeadlineNoTimeError();
                     return;

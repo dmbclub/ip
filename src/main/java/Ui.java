@@ -74,6 +74,12 @@ public class Ui {
         showLine();
     }
 
+    public static void showDateTimeError() {
+        showLine();
+        print("Please enter the deadline date in the format yyyy-mm-dd");
+        showLine();
+    }
+
     public static void showDeleteNumberFormatError () {
         showLine();
         print(" ☹ OOPS!!! Please enter a number after 'delete' command.");
