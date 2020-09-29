@@ -1,5 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,7 +30,8 @@ public class Storage {
                     break;
                 case " D":
                     String[] deadline = words[2].split("by:");
-                    Deadline d = new Deadline(deadline[0].replace(" (", ""),deadline[1].replace(")", ""));
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+                    Deadline d = new Deadline(deadline[0].replace(" (", ""), LocalDate.parse(deadline[1].replace(")", ""), formatter));
                     if (words[1].equals("1")) {
                         d.markTheStatusAsDone();
                     }
