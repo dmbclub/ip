@@ -1,3 +1,8 @@
+/**
+ * Task is a class that has three subclasses to do, deadline and event.
+ * It contains the description (string) and the status of the class (boolean, done or not).
+ */
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -7,14 +12,25 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Get the corresponding icon for the current status.
+     * @return tick or cross symbols
+     */
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+        return (isDone ? "\u2713" : "\u2718");
     }
 
+    /**
+     * set the status of the task
+     */
     public void markTheStatusAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Override the task
+     * @return task in the format [tick or cross] + description
+     */
     public String toString() {
         return "[" + getStatusIcon() + "]" + description;
     }
