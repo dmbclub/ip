@@ -1,3 +1,8 @@
+/**
+ * Command contains the name of the command and the description of the command.
+ * Valid commands are "exit", "list", "done", "delete", "find", "deadline", "event", "todo"
+ */
+
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -12,6 +17,9 @@ public class Command {
         this.description = description;
     }
 
+    /**
+     * execute the command
+     */
     public static void execute() {
         switch (command) {
             case "list":
@@ -84,6 +92,10 @@ public class Command {
         storeTaskList();
     }
 
+    /**
+     * Judge whether the user wants to exit.
+     * @return boolean. True means exit and false means not exit.
+     */
     public static boolean isExit() {
         if (command.equals("exit")) {
             return true;
@@ -91,6 +103,9 @@ public class Command {
         return false;
     }
 
+    /**
+     * Store the tasklist into local file.
+     */
     private static void storeTaskList() {
         try {
             Storage.writeToFile();
