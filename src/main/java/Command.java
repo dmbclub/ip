@@ -4,6 +4,7 @@
  */
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -46,6 +47,14 @@ public class Command {
                     Ui.showDeleteIndexOutOfBoundsError();
                     return;
                 }
+                break;
+            case "find":
+                if (description.equals("find")) {
+                    Ui.showFindNothingError();
+                    return;
+                }
+                ArrayList<Task> tasksFound = TaskList.findTasks(description);
+                Ui.showFindList(tasksFound);
                 break;
             case "deadline":
                 if (description.equals("deadline")) {

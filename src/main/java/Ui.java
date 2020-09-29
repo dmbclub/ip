@@ -1,7 +1,10 @@
+
 /**
  * Ui class deals with interactions with the user.
  */
 
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -31,7 +34,17 @@ public class Ui {
         System.out.println(t);
     }
 
-    /**
+     /**
+     * print the tasklist
+     * @param tasklist to be printed out.
+     */
+    public static void printTaskList(ArrayList<Task> tasklist) {
+        for (int i = 0; i < tasklist.size(); i++) {
+            print((i + 1) + "." + tasklist.get(i));
+        }
+    }
+
+     /**
      * read the user input
      * @return String of the user input.
      */
@@ -190,6 +203,25 @@ public class Ui {
     public static void showEventNoTimeError() {
         showLine();
         print(" ☹ OOPS!!! You also need to specify the time of an event.");
+        showLine();
+    }
+
+    /**
+     * Show the tasks that match the user input.
+     */
+    public static void showFindList(ArrayList<Task> tasksFound) {
+        showLine();
+        print("Here are the matching tasks in your list:");
+        printTaskList(tasksFound);
+        showLine();
+    }
+
+    /**
+     * Show the message when user just enters find without any description.
+     */
+    public static void showFindNothingError() {
+        showLine();
+        print("☹ OOPS!!! Please enter something after find command.");
         showLine();
     }
 
