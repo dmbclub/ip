@@ -10,6 +10,9 @@ public class Parser {
         else if (userInput.startsWith("done")) {
             c = new Command("done", userInput.replace("done ", ""));
         }
+        else if (userInput.startsWith("find")) {
+            c = new Command("find", userInput.replace("find ", ""));
+        }
         else if (userInput.startsWith("delete")) {
             c = new Command("delete", userInput.replace("delete ", ""));
         }
