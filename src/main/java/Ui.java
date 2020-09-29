@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -14,6 +15,12 @@ public class Ui {
 
     public static void printTask(Task t) {
         System.out.println(t);
+    }
+
+    public static void printTaskList(ArrayList<Task> tasklist) {
+        for (int i = 0; i < tasklist.size(); i++) {
+            print((i + 1) + "." + tasklist.get(i));
+        }
     }
 
     public static String readCommand() {
@@ -120,6 +127,19 @@ public class Ui {
     public static void showEventNoTimeError() {
         showLine();
         print(" ☹ OOPS!!! You also need to specify the time of an event.");
+        showLine();
+    }
+
+    public static void showFindList(ArrayList<Task> tasksFound) {
+        showLine();
+        print("Here are the matching tasks in your list:");
+        printTaskList(tasksFound);
+        showLine();
+    }
+
+    public static void showFindNothingError() {
+        showLine();
+        print("☹ OOPS!!! Please enter something after find command.");
         showLine();
     }
 

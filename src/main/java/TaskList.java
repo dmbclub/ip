@@ -47,4 +47,14 @@ public class TaskList {
                 Ui.showTooManyDeletionsError();
         }
     }
+
+    public static ArrayList<Task> findTasks(String userInput) {
+        ArrayList<Task> tasksFound = new ArrayList<>();
+        for(int i = 0; i < size(); i++) {
+            if(get(i).description.contains(userInput)) {
+                tasksFound.add(get(i));
+            }
+        }
+        return tasksFound;
+    }
 }
