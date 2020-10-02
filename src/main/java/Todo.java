@@ -9,7 +9,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Override the to do task
+     * Overrides the to do task
      * @return to do task in the format [T][tick or cross] + description
      */
     public String toString() {

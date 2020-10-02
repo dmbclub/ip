@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Ui {
     /**
-     * show greeting messages.
+     * Shows greeting messages.
      */
     public static void greet() {
         showLine();
@@ -19,7 +19,7 @@ public class Ui {
     }
 
     /**
-     * print the text.
+     * Prints the text.
      * @param text String that will be printed out.
      */
     public static void print(String text) {
@@ -27,7 +27,7 @@ public class Ui {
     }
 
     /**
-     * print the task.
+     * Prints the task.
      * @param t Task that will be printed out.
      */
     public static void printTask(Task t) {
@@ -35,7 +35,7 @@ public class Ui {
     }
 
      /**
-     * print the tasklist
+     * Prints the tasklist
      * @param tasklist to be printed out.
      */
     public static void printTaskList(ArrayList<Task> tasklist) {
@@ -45,7 +45,7 @@ public class Ui {
     }
 
      /**
-     * read the user input
+     * Reads the user input
      * @return String of the user input.
      */
     public static String readCommand() {
@@ -56,14 +56,14 @@ public class Ui {
     }
 
     /**
-     * print a horizontal line.
+     * Prints a horizontal line.
      */
     public static void showLine() {
         print("____________________________________________________________");
     }
 
     /**
-     * Show the message when loading error occurs.
+     * Shows the message when loading error occurs.
      */
     public static void showLoadingError() {
         showLine();
@@ -72,7 +72,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user inputs an invalid command.
+     * Shows the message when user inputs an invalid command.
      */
     public static void showError() {
         showLine();
@@ -81,7 +81,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user enters a non-number after done command.
+     * Shows the message when user enters a non-number after done command.
      */
     public static void showDoneNumberFormatError() {
         showLine();
@@ -90,7 +90,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user enters a number that beyond the length of the current task list after done command.
+     * Shows the message when user enters a number that beyond the length of the current task list after done command.
      */
     public static void showDoneNullPointerError() {
         showLine();
@@ -99,7 +99,7 @@ public class Ui {
     }
 
     /**
-     * Mark the corresponding tasks as don, and show the message
+     * Marks the corresponding tasks as don, and show the message
      * that the tasks has been successfully marked as done.
      * @param words An array of String indicating the indexes of tasks that the user wants to mark as done.
      */
@@ -115,7 +115,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user just enters a delete without any number.
+     * Shows the message when user just enters a delete without any number.
      */
     public static void showDeleteNothingError() {
         showLine();
@@ -124,7 +124,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user wants to delete many tasks at the same time.
+     * Shows the message when user wants to delete many tasks at the same time.
      */
     public static void showTooManyDeletionsError() {
         showLine();
@@ -133,7 +133,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when the deadline that user types in is not in the format yyyy-mm-dd.
+     * Shows the message when the deadline that user types in is not in the format yyyy-mm-dd.
      */
     public static void showDateTimeError() {
         showLine();
@@ -142,7 +142,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user enters a non-number after delete command.
+     * Shows the message when user enters a non-number after delete command.
      */
     public static void showDeleteNumberFormatError () {
         showLine();
@@ -151,7 +151,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user enters a number that beyond the length of the current task list after delete command.
+     * Shows the message when user enters a number that beyond the length of the current task list after delete command.
      */
     public static void showDeleteIndexOutOfBoundsError(){
         showLine();
@@ -160,7 +160,7 @@ public class Ui {
     }
 
     /**
-     * Show how many task left in the task list after removing a task.
+     * Shows how many task left in the task list after removing a task.
      * @param count integer. Number of current tasks in the task list.
      */
     public static void showDeleteTaskMessage(int count) {
@@ -171,7 +171,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user just enters deadline without any description.
+     * Shows the message when user just enters deadline without any description.
      */
     public static void showDeadlineArrayIndexOutOfBoundsError() {
         showLine();
@@ -180,7 +180,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user does not enter the date of the deadline after "/by".
+     * Shows the message when user does not enter the date of the deadline after "/by".
      */
     public static void showDeadlineNoTimeError() {
         showLine();
@@ -189,7 +189,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user just enters event without any description.
+     * Shows the message when user just enters event without any description.
      */
     public static void showEventArrayIndexOutOfBoundsError() {
         showLine();
@@ -198,7 +198,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user does not enter the time of the event after "/at".
+     * Shows the message when user does not enter the time of the event after "/at".
      */
     public static void showEventNoTimeError() {
         showLine();
@@ -207,7 +207,7 @@ public class Ui {
     }
 
     /**
-     * Show the tasks that match the user input.
+     * Shows the tasks that match the user input.
      */
     public static void showFindList(ArrayList<Task> tasksFound) {
         showLine();
@@ -217,7 +217,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user just enters find without any description.
+     * Shows the message when user just enters find without any description.
      */
     public static void showFindNothingError() {
         showLine();
@@ -226,7 +226,7 @@ public class Ui {
     }
 
     /**
-     * Show the message when user just enters to do without any description.
+     * Shows the message when user just enters to do without any description.
      */
     public static void showTodoArrayIndexOutOfBoundsError() {
         showLine();
@@ -235,7 +235,7 @@ public class Ui {
     }
 
     /**
-     * Show the error message
+     * Shows the error message
      * @param e An exception caught when writing the task list to file.
      */
     public static void showIOError(Exception e) {
@@ -243,7 +243,7 @@ public class Ui {
     }
 
     /**
-     * Show the message to tell the user that the task has been successfully added.
+     * Shows the message to tell the user that the task has been successfully added.
      * @param count Integer. Number of current tasks in the task list.
      */
     public static void getAddTaskMessage(int count) {
@@ -259,7 +259,7 @@ public class Ui {
     }
 
     /**
-     * Print the current task list.
+     * Prints the current task list.
      * @param count Integer. Number of current tasks in the task list.
      */
     public static void listTasks(int count) {
@@ -272,7 +272,7 @@ public class Ui {
     }
 
     /**
-     * Print the goodbye message.
+     * Prints the goodbye message.
      */
     public static void goodbye() {
         showLine();

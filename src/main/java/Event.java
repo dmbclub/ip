@@ -21,7 +21,7 @@ public class Event extends Task {
     }
 
     /**
-     * override the event task
+     * overrides the event task
      * @return event task in the format [E][tick or cross] + description + (at: time)
      */
     public String toString() {

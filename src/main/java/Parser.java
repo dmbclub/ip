@@ -6,7 +6,7 @@ public class Parser {
     /**
      * Parser formats the user input and output a command c
      * @param userInput String of the user input.
-     * @return c. A command that contains the name of the command (string) and the description of the command (string).
+     * @return Command c. A command that contains the name of the command (string) and the description of the command (string).
      */
     public static Command parse(String userInput) {
         Command c;

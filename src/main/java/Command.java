@@ -13,97 +13,98 @@ public class Command {
     private static String command;
     private static String description;
 
-    public Command (String command, String description) {
+    public Command(String command, String description) {
         this.command = command;
         this.description = description;
     }
 
     /**
-     * execute the command
+     * Executes the command
      */
     public static void execute() {
         switch (command) {
-            case "list":
-                Ui.listTasks(TaskList.size());
+        case "list":
+            Ui.listTasks(TaskList.size());
+            return;
+        case "done":
+            try {
+                TaskList.markAsDone(description);
+            } catch (NumberFormatException e) {
+                Ui.showDoneNumberFormatError();
                 return;
-            case "done":
+            } catch (NullPointerException e) {
+                Ui.showDoneNullPointerError();
+                return;
+            }
+            break;
+        case "delete":
+            try {
+                TaskList.deleteTasks(description, TaskList.size() - 1);
+            } catch (NumberFormatException e) {
+                Ui.showDeleteNumberFormatError();
+                return;
+            } catch (IndexOutOfBoundsException e) {
+                Ui.showDeleteIndexOutOfBoundsError();
+                return;
+            }
+            break;
+        case "find":
+            if (description.equals("find")) {
+                Ui.showFindNothingError();
+                return;
+            }
+            ArrayList<Task> tasksFound = TaskList.findTasks(description);
+            Ui.showFindList(tasksFound);
+            break;
+        case "deadline":
+            if (description.equals("deadline")) {
+                Ui.showDeadlineArrayIndexOutOfBoundsError();
+                return;
+            }
+            try {
+                String[] words = description.split(" /by ");
                 try {
-                    TaskList.markAsDone(description);
-                } catch (NumberFormatException e) {
-                    Ui.showDoneNumberFormatError();
-                    return;
-                } catch (NullPointerException e) {
-                    Ui.showDoneNullPointerError();
+                    TaskList.add(TaskList.size(), new Deadline(words[0], LocalDate.parse(words[1])));
+                } catch (DateTimeException e) {
+                    Ui.showDateTimeError();
                     return;
                 }
-                break;
-            case "delete":
-                try {
-                    TaskList.deleteTasks(description, TaskList.size() - 1);
-                } catch (NumberFormatException e) {
-                    Ui.showDeleteNumberFormatError();
-                    return;
-                } catch (IndexOutOfBoundsException e) {
-                    Ui.showDeleteIndexOutOfBoundsError();
-                    return;
-                }
-                break;
-            case "find":
-                if (description.equals("find")) {
-                    Ui.showFindNothingError();
-                    return;
-                }
-                ArrayList<Task> tasksFound = TaskList.findTasks(description);
-                Ui.showFindList(tasksFound);
-                break;
-            case "deadline":
-                if (description.equals("deadline")) {
-                    Ui.showDeadlineArrayIndexOutOfBoundsError();
-                    return;
-                }
-                try {
-                    String[] words = description.split(" /by ");
-                    try {
-                        TaskList.add(TaskList.size(), new Deadline(words[0], LocalDate.parse(words[1])));
-                    } catch (DateTimeException e) {
-                        Ui.showDateTimeError();
-                        return;
-                    }
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    Ui.showDeadlineNoTimeError();
-                    return;
-                }
-                Ui.getAddTaskMessage(TaskList.size());
-                break;
-            case "event":
-                if (description.equals("event")) {
-                    Ui.showEventArrayIndexOutOfBoundsError();
-                    return;
-                }
-                try {
-                    String[] words = description.split(" /at ");
-                    TaskList.add(TaskList.size(), new Event(words[0], words[1]));
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    Ui.showEventNoTimeError();
-                    return;
-                }
-                Ui.getAddTaskMessage(TaskList.size());
-                break;
-            case "todo":
-                if (description.equals("todo")) {
-                    Ui.showTodoArrayIndexOutOfBoundsError();
-                    return;
-                }
-                TaskList.add(TaskList.size(), new Todo(description.replace("todo ", "")));
-                Ui.getAddTaskMessage(TaskList.size());
-                break;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.showDeadlineNoTimeError();
+                return;
+            }
+            Ui.getAddTaskMessage(TaskList.size());
+            break;
+        case "event":
+            if (description.equals("event")) {
+                Ui.showEventArrayIndexOutOfBoundsError();
+                return;
+            }
+            try {
+                String[] words = description.split(" /at ");
+                TaskList.add(TaskList.size(), new Event(words[0], words[1]));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Ui.showEventNoTimeError();
+                return;
+            }
+            Ui.getAddTaskMessage(TaskList.size());
+            break;
+        case "todo":
+            if (description.equals("todo")) {
+                Ui.showTodoArrayIndexOutOfBoundsError();
+                return;
+            }
+            TaskList.add(TaskList.size(), new Todo(description.replace("todo ", "")));
+            Ui.getAddTaskMessage(TaskList.size());
+            break;
         }
         storeTaskList();
     }
 
     /**
-     * Judge whether the user wants to exit.
-     * @return boolean. True means exit and false means not exit.
+     * Judges whether the user wants to exit.
+     *
+     * @return isExit boolean tpye. True means exit and false means not exit.
      */
     public static boolean isExit() {
         if (command.equals("exit")) {
@@ -113,7 +114,7 @@ public class Command {
     }
 
     /**
-     * Store the tasklist into local file.
+     * Stores the tasklist into local file.
      */
     private static void storeTaskList() {
         try {

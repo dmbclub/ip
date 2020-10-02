@@ -13,7 +13,7 @@ public class Task {
     }
 
     /**
-     * Get the corresponding icon for the current status.
+     * Gets the corresponding icon for the current status.
      * @return tick or cross symbols
      */
     public String getStatusIcon() {
@@ -21,14 +21,14 @@ public class Task {
     }
 
     /**
-     * set the status of the task
+     * Sets the status of the task
      */
     public void markTheStatusAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Override the task
+     * Overrides the task
      * @return task in the format [tick or cross] + description
      */
     public String toString() {

@@ -23,7 +23,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Override the deadline task
+     * Overrides the deadline task
      * @return deadline task in the format [D][tick or cross] + description + (by: MMM d yyyy)
      */
     public String toString() {

@@ -8,7 +8,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * initialize duke
+     * Initializes duke
      * @param filePath String. The path of the local data file.
      */
     public Duke(String filePath) {
@@ -25,7 +25,7 @@ public class Duke {
     }
 
     /**
-     * run the program
+     * Runs the program
      */
     public void run() {
         ui.greet();
